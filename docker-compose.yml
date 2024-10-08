@@ -1,0 +1,30 @@
+version: '0.1'
+
+services:
+  spring-boot-api:
+    image: tla18b/music-store:latest  # Replace with your Spring Boot image
+    container_name: spring-boot-api
+    expose:
+      - "8080"  # Exposing port internally
+    networks:
+      - app-network
+
+  angular-app:
+    image: tla118b/music-store-angular:latest
+    container_name: angular-app
+    environment:
+      - CERTBOT_EMAIL=trevoralspach@gmail.com  # Replace with your email for Let's Encrypt cert
+      - CERTBOT_DOMAIN=syncify.duckdns.org  # Replace with your domain
+    volumes:
+      - ./nginx-data:/etc/nginx/data  # For storing generated certificates
+    ports:
+      - "80:80"   # For HTTP
+      - "443:443" # For HTTPS
+    depends_on:
+      - spring-boot-api
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
