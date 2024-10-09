@@ -5,7 +5,7 @@ services:
     image: tla18b/music-store:latest  # Replace with your Spring Boot image
     container_name: spring-boot-api
     expose:
-      - "8080"  # Exposing port internally
+      - "8080:8080"  # Exposing port internally
     networks:
       - app-network
 
