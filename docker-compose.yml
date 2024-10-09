@@ -10,7 +10,7 @@ services:
       - app-network
 
   angular-app:
-    image: tla118b/music-store-angular:latest
+    image: tla18b/music-store-angular:latest
     container_name: angular-app
     environment:
       - CERTBOT_EMAIL=trevoralspach@gmail.com  # Replace with your email for Let's Encrypt cert
